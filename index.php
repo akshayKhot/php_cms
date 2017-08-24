@@ -10,20 +10,21 @@
 
    <div class="container">
 
-    <h1 class="text-center">Blog</h1>
+        <h1 class="text-center">Blog</h1>
+
+        <div class="text-right">
+            <a href="html/addnew.html">
+                <button class="btn btn-primary">Add new post</button>
+            </a>
+        </div>
+
+
         <?php
-            require 'connect.php';
-
-            $result = $db->query("SELECT * FROM posts") or die($db->error);
-
-            echo "<article>";
-            foreach ($result as $row) {
-                echo "<div><h3>" . $row['title'] . "</h3></div>";
-                echo "<div><p>" . $row['content'] . "</p></div>";
-            }
-            echo "</article>";
-
+            include("php/fetch.php");
         ?>
+
+        
+
 
    </div>
 
