@@ -12,7 +12,7 @@
        <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><a href="http://localhost:8888/php_cms/php/addnew.php">Add</a></li>
+            <li role="presentation"><a href="http://localhost:8888/php_cms/php/addnew.php">Add</a></li>
             <li role="presentation"><a href="http://localhost:8888/php_cms/php/register.php">Register</a></li>
             <li role="presentation"><a href="http://localhost:8888/php_cms/php/login.php">Login</a></li>
           </ul>

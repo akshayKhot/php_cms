@@ -13,7 +13,7 @@
                     VALUES ('$name', '$email', '$crypted');";
 
         if(!( empty($name) || empty($email) || empty($password) )) {
-            mysqli_query($db, $query) or die(mysqli_error($db));;
+            mysqli_query($db, $query) or die(mysqli_error($db));
             echo "<h1>user added successfully</h1>";
         }
         else { 
