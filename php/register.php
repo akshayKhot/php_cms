@@ -26,7 +26,7 @@
         <div class="col-md-6 col-md-offset-3">
         <h1 class="display-4 m-b-2"></h1><br/>
         <!-- register form-->
-        <form method="POST" action="" method="post">
+        <form method="POST" action="" method="post" onsubmit="return isValidRegister()">
             <div class="form-group">
             <label for="name">Name:</label>
             <input class="form-control" id="name" type="text" placeholder="enter full name" name="name"/>
