@@ -1,6 +1,6 @@
 <?php
-
-    if(isset($_POST['submitBtn'])){
+    include("header.php");
+    if(isset($_POST["submitBtn"])) {
         require 'connect.php';
 
         $title = htmlspecialchars($_POST["title"]);
@@ -18,7 +18,7 @@
             echo "<h1>Database Error</h1>";
         }
     } else {
-        include("header.php");
+        
 ?>
 
 <h1 class="text-center spaced">Add New Post</h1>
