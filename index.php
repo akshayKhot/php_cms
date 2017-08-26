@@ -1,4 +1,5 @@
 <?php 
+    include("php/common.php");
     include("php/header.php");
 ?>
 

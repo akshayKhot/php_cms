@@ -1,22 +1,28 @@
 <?php 
-    include("header.php");
+
     if((isset($_POST["submitBtn"]))) {
         require 'connect.php';
         $email = htmlspecialchars($_POST["email"]);
         $password = htmlspecialchars($_POST["password"]);
 
-        $query = "SELECT name, password FROM users WHERE email='$email';";
+        $query = "SELECT user_id, name, password FROM users WHERE email='$email';";
         
         $result = $db->query($query) or die($db->error);
         $row = mysqli_fetch_assoc($result);
-        $crypted = $row["password"];
+        
+        $crypted = $row["password"]; 
+        $name = $row["name"]; 
+        $user_id = $row["user_id"];
+
         if(password_verify($password, $crypted)) {
-            $name = $row['name'];
-            echo "Welcome, $name";
+            include("common.php");
+            $_SESSION["user_id"] = $user_id;
+            header("Location: http://localhost:8888/php_cms/");
         } else {
             echo "user didn't match";
         }
     } else {
+        include("header.php");
 ?>
        <h1 class="text-center">Login</h1>
        <div class="row">
@@ -25,7 +31,7 @@
         <form action="" method="post">
             <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" type="text" id="email" placeholder="email" name="email"/>
+            <input class="form-control" type="email" id="email" placeholder="email" name="email"/>
             </div>
             <div class="form-group">
             <label for="password">Password</label>

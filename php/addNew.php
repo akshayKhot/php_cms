@@ -12,7 +12,8 @@
 
         if(!( empty($title) || empty($date) || empty($content) )) {
             $db->query($query) or die($db->error);
-            echo "<h1>values added successfully</h1>";
+            echo "<h3>Post added successfully</h3>";
+            echo "<a href='http://localhost:8888/php_cms/'><button class='btn btn-success'>All Posts</button></a>";
         }
         else { 
             echo "<h1>Database Error</h1>";

@@ -9,7 +9,6 @@
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
    </head>
 <body>
 
@@ -17,9 +16,17 @@
        <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation"><a href="http://localhost:8888/php_cms/php/addnew.php">Add</a></li>
-            <li role="presentation"><a href="http://localhost:8888/php_cms/php/register.php">Register</a></li>
-            <li role="presentation"><a href="http://localhost:8888/php_cms/php/login.php">Login</a></li>
+              <?php 
+                if(isset($_SESSION['user_id'])) {
+                    echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/addnew.php'>Add</a></li>";
+                    echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/logout.php'>Logout</a></li>";
+                } else {
+                    echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/register.php'>Register</a></li>";
+                    echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/login.php'>Login</a></li>";
+                }
+                ?>
+            
+            
           </ul>
         </nav>
         <h3 class="text-muted"><a href="http://localhost:8888/php_cms/">Blog</a></h3>
