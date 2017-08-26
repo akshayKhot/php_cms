@@ -11,7 +11,7 @@
                     VALUES ('$title', '$date', 'Akshay', '$content');";
 
         if(!( empty($title) || empty($date) || empty($content) )) {
-            mysqli_query($db, $query);
+            $db->query($query) or die($db->error);
             echo "<h1>values added successfully</h1>";
         }
         else { 

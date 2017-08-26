@@ -7,7 +7,7 @@
 
         $query = "SELECT name, password FROM users WHERE email='$email';";
         
-        $result = mysqli_query($db, $query) or die(mysqli_error($db));
+        $result = $db->query($query) or die($db->error);
         $row = mysqli_fetch_assoc($result);
         $crypted = $row["password"];
         if(password_verify($password, $crypted)) {
