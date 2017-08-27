@@ -7,31 +7,33 @@
         $posts_query = "SELECT * FROM posts WHERE author_id='$user_id';";
 
         $posts_result = $db->query($posts_query) or die($db->error);
-
+        $query = "SELECT name FROM users WHERE user_id='" . $user_id . "';";
+        $result = $db->query($query) or die($db->error);
+        $user = mysqli_fetch_assoc($result);
         
         foreach ($posts_result as $post) {
-            echo "<article>";
-            echo "<div><h4>" . $post['title'] . "</h4></div>";
-            echo "<div><p>" . $post['content'] . "</p></div>";
-            echo "</article>";
+            createPost($post, $user);
         }
     } else {
         $posts_query = "SELECT * FROM posts;";
         $posts_result = $db->query($posts_query) or die($db->error);
 
-        
-        
         foreach ($posts_result as $post) {
 
             $query = "SELECT name FROM users WHERE user_id='" . $post["author_id"] . "';";
             $result = $db->query($query) or die($db->error);
             $user = mysqli_fetch_assoc($result);
 
-            echo "<article>";
-            echo "<div><h4>" . $post['title'] . "</h4>By " . $user["name"] . "</div>";
-            echo "<div><p>" . $post['content'] . "</p></div>";
-            echo "</article>";
+            createPost($post, $user);
         }
 
+    }
+
+    function createPost($post, $user) {
+        echo "<article>";
+        echo "<h2>" . $post['title'] . "</h2>";
+        echo "<div class='content'>" . $post['content'] . "</div>";
+        echo "<div class='author'>-" . $user['name'] . "</div>";
+        echo "</article>";
     }
 ?>

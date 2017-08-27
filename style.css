@@ -42,3 +42,24 @@ body {
 .warning {
     border: 1px solid #dd0000;
 }
+
+.text-muted {
+    font-size: 2.5em;
+}
+article {
+    padding: 5px;
+    margin: 10px;
+}
+
+article .title {
+    text-align: center;
+    font-size: 2em;
+}
+
+article .author {
+    margin-top: 5px;
+}
+
+article .content {
+    font-size: 1.3em;
+}
