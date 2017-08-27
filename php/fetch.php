@@ -32,7 +32,6 @@
     function createPost($post, $user) {
         echo "<article>";
         echo "<h2><a href='php/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h2>";
-        echo "<div class='content'>" . $post['content'] . "</div>";
         echo "<div class='author'>-" . $user['name'] . "</div>";
         echo "</article>";
     }

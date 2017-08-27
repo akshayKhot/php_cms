@@ -1,4 +1,6 @@
 <?php
+
+    include("common.php");
     include("header.php");
     $post_id = $_GET["id"];
     $query = "SELECT title, date, content FROM posts WHERE post_id='" . $post_id . "';";
@@ -12,7 +14,7 @@
         <?php echo $_GET["author"]?>
     </div>
     <div class="content">
-        <?php echo $post["content"]; ?>
+        <?php echo nl2br($post["content"]); ?>
     </div>
 </div>
 
