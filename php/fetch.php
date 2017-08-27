@@ -16,14 +16,22 @@
             echo "</article>";
         }
     } else {
+        $posts_query = "SELECT * FROM posts;";
+        $posts_result = $db->query($posts_query) or die($db->error);
+
         
-?>  
+        
+        foreach ($posts_result as $post) {
 
-<div class="container">
-    <h4>Welcome to the blog. To create your personal blog, please register.</h4>
-    <h4>If you are an existing user, please log in. </h4>
-</div>
+            $query = "SELECT name FROM users WHERE user_id='" . $post["author_id"] . "';";
+            $result = $db->query($query) or die($db->error);
+            $user = mysqli_fetch_assoc($result);
 
-<?php
+            echo "<article>";
+            echo "<div><h4>" . $post['title'] . "</h4>By " . $user["name"] . "</div>";
+            echo "<div><p>" . $post['content'] . "</p></div>";
+            echo "</article>";
+        }
+
     }
 ?>
