@@ -1,5 +1,5 @@
 <?php 
-
+    include "common.php";
     if((isset($_POST["submitBtn"]))) {
         require 'connect.php';
         $email = htmlspecialchars($_POST["email"]);
@@ -15,11 +15,11 @@
         $user_id = $row["user_id"];
 
         if(password_verify($password, $crypted)) {
-            include("common.php");
             $_SESSION["user_id"] = $user_id;
             header("Location: http://localhost:8888/php_cms/");
         } else {
-            echo "user didn't match";
+            $_SESSION["loginerror"] = 1;
+            header("Location: http://localhost:8888/php_cms/php/login.php");
         }
     } else {
         include("header.php");
@@ -31,11 +31,11 @@
         <form action="" method="post">
             <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" type="email" id="email" placeholder="email" name="email"/>
+            <input class="form-control <?php echo $_SESSION['loginerror'] ? 'warning' : ''; ?>" type="email" id="email" placeholder="email" name="email"/>
             </div>
             <div class="form-group">
             <label for="password">Password</label>
-            <input class="form-control" type="password" id="password" placeholder="password" name="password"/>
+            <input class="form-control <?php echo $_SESSION['loginerror'] ? 'warning' : ''; ?>" type="password" id="password" placeholder="password" name="password"/>
             </div>
             <div class="text-center">
                 <button class="btn btn-primary" name="submitBtn" type="submit">Log in </button>
