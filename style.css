@@ -35,7 +35,7 @@ body {
 }
 
 .header h3 a {
-    color: #555;
+    color: #000;
     text-decoration: none;
 }
 
@@ -62,4 +62,17 @@ article .author {
 
 article .content {
     font-size: 1.3em;
+}
+.single-post h2 {
+    text-align: center;
+}
+.single-post .author {
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+.single-post .content {
+    padding: 5px;
+    font-size: 1.2em;
+    line-height: 1.8em;
 }

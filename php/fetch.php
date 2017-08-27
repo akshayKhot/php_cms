@@ -5,8 +5,8 @@
 
         $user_id = $_SESSION['user_id'];
         $posts_query = "SELECT * FROM posts WHERE author_id='$user_id';";
-
         $posts_result = $db->query($posts_query) or die($db->error);
+        
         $query = "SELECT name FROM users WHERE user_id='" . $user_id . "';";
         $result = $db->query($query) or die($db->error);
         $user = mysqli_fetch_assoc($result);
@@ -31,7 +31,7 @@
 
     function createPost($post, $user) {
         echo "<article>";
-        echo "<h2>" . $post['title'] . "</h2>";
+        echo "<h2><a href='php/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h2>";
         echo "<div class='content'>" . $post['content'] . "</div>";
         echo "<div class='author'>-" . $user['name'] . "</div>";
         echo "</article>";
