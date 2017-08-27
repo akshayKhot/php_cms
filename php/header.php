@@ -17,7 +17,13 @@
         <nav>
           <ul class="nav nav-pills pull-right">
               <?php 
+                require 'connect.php';
                 if(isset($_SESSION['user_id'])) {
+                    $user_id = $_SESSION['user_id'];
+                    $user_query = "SELECT name FROM users WHERE user_id='$user_id';";
+                    $user_result = $db->query($user_query) or die($db->error);
+                    $user = mysqli_fetch_assoc($user_result);
+                    echo "<li role='presentation'><a href='#' class='not-active'>Welcome, " . $user["name"] . "</a></li>";
                     echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/addnew.php'>Add</a></li>";
                     echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/logout.php'>Logout</a></li>";
                 } else {

@@ -1,5 +1,4 @@
 <?php 
-    include("header.php");
     if(isset($_POST["submitBtn"])) {
         require 'connect.php';
 
@@ -14,12 +13,13 @@
 
         if(!( empty($name) || empty($email) || empty($password) )) {
             $db->query($query) or die($db->error);
-            echo "<h1>user added successfully</h1>";
+            header("Location: http://localhost:8888/php_cms/php/login.php");
         }
         else { 
             echo "<h1>Database Error</h1>";
         }
     } else {
+        include("header.php");
 ?>
        <h1 class="text-center">Register</h1>
         <div class="row">
