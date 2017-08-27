@@ -1,14 +1,17 @@
 <?php
+    include("common.php");
     include("header.php");
+    
     if(isset($_POST["submitBtn"])) {
         require 'connect.php';
-
+        
         $title = htmlspecialchars($_POST["title"]);
         $date = htmlspecialchars($_POST["date"]);
-        $content = htmlspecialchars($_POST["content"]);
-        
-        $query = "INSERT INTO posts (title, date, author, content)
-                    VALUES ('$title', '$date', 'Akshay', '$content');";
+        $content = htmlspecialchars(mysqli_real_escape_string($db, $_POST["content"]));
+        $user_id = $_SESSION['user_id'];
+
+        $query = "INSERT INTO posts (title, date, author_ID, content)
+                    VALUES ('$title', '$date', '$user_id', '$content');";
 
         if(!( empty($title) || empty($date) || empty($content) )) {
             $db->query($query) or die($db->error);
