@@ -76,3 +76,8 @@ article .content {
     font-size: 1.2em;
     line-height: 1.8em;
 }
+
+
+.deletePost, .editPost {
+    margin-left: 10px;
+}
