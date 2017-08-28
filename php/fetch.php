@@ -32,7 +32,12 @@
     function createPost($post, $user) {
 
         if(isset($_SESSION['user_id'])) {
-            $icons = "<span class='deletePost'><i class='fa fa-times' aria-hidden='true'></i></span><span class='editPost'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></span>";
+            $icons = "<a href='http://localhost:8888/php_cms/php/modifyPost.php?deletePost=$post[post_id]'><span class='deletePost'>
+                        <i class='fa fa-times' aria-hidden='true'></i>
+                        </span></a>
+                      <a href='http://localhost:8888/php_cms/php/modifyPost.php?editPost=$post[post_id]'><span class='editPost'>
+                        <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
+                      </span></a>";
         } else {
             $icons = "";
         }

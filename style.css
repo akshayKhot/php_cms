@@ -78,6 +78,12 @@ article .content {
 }
 
 
-.deletePost, .editPost {
+.deletePost {
     margin-left: 10px;
+    color: red;
+}
+
+.editPost {
+    margin-left: 10px;
+    color: #444;
 }
