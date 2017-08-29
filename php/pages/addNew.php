@@ -1,9 +1,9 @@
 <?php
-    require("init.php");
+    require_once("../common/init.php");
     
     if(isset($_POST["submitBtn"])) {
         
-        $title = htmlspecialchars($_POST["title"]);
+        $title = htmlspecialchars(mysqli_real_escape_string($db, $_POST["title"]));
         $date = htmlspecialchars($_POST["date"]);
         $content = htmlspecialchars(mysqli_real_escape_string($db, $_POST["content"]));
         $user_id = $_SESSION['user_id'];
@@ -13,13 +13,13 @@
 
         if(!( empty($title) || empty($date) || empty($content) )) {
             $db->query($query) or die($db->error);
-            header("Location: http://localhost:8888/php_cms/");
+            header("Location: $HOME_PATH");
         }
         else { 
             echo "<h1>Database Error</h1>";
         }
     } else {
-        include("header.php");
+        include(SHARED_PATH . "/header.php");
 ?>
 
 <h1 class="text-center spaced">Add New Post</h1>
@@ -51,5 +51,5 @@
    
 <?php
     }
-    include("footer.php");
+    include(SHARED_PATH . "/footer.php");
 ?>

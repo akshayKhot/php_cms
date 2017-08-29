@@ -1,11 +1,11 @@
 <?php 
-    require("init.php");
+    require_once("../common/init.php");
     
     if(isset($_SESSION["user_id"])) {
         if(isset($_GET["deletePost"])) {
             $deleteQuery = "DELETE FROM posts WHERE post_id=$_GET[deletePost]";
             $db->query($deleteQuery) or die($db->error);
-            header("Location: http://localhost:8888/php_cms/");
+            header("Location: $HOME_PATH");
         }
         elseif(isset($_POST["submitBtn"])) {
 
@@ -15,13 +15,13 @@
 
             $updateQuery = "UPDATE posts SET title='$title', date='$date', content='$content' WHERE post_id=$_GET[editPost];";
             $db->query($updateQuery) or die($db->error);
-            header("Location: http://localhost:8888/php_cms/");
+            header("Location: $HOME_PATH");
         }
         elseif(isset($_POST["cancelBtn"])) {
-            header("Location: http://localhost:8888/php_cms/");
+            header("Location: $HOME_PATH");
         }
         elseif(isset($_GET["editPost"])) {
-            include("header.php");
+            include(SHARED_PATH . "/header.php");
             $postQuery = "SELECT title, date, content FROM posts WHERE post_id='$_GET[editPost])';";
             $result = $db->query($postQuery) or die($db->error);
             $row = mysqli_fetch_assoc($result);
@@ -61,5 +61,5 @@
 <?php
         }
     }
-    include "footer.php";
+    include(SHARED_PATH . "/footer.php");
 ?>

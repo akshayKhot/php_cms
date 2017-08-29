@@ -1,9 +1,9 @@
-<?php 
-    require("php/init.php");
+<?php
+    require("php/common/init.php");
 
-    include("php/header.php");
-    include("php/home.php");
-    include("php/footer.php");
+    include(SHARED_PATH . "/header.php");
+    include(PAGES_PATH . "/home.php");
+    include(SHARED_PATH . "/footer.php");
 ?>
 
 

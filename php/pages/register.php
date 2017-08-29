@@ -1,5 +1,5 @@
 <?php 
-    require("init.php");
+    require_once("../common/init.php");
     if(isset($_POST["submitBtn"])) {
         $name = htmlspecialchars($_POST["name"]);
         $email = htmlspecialchars($_POST["email"]);
@@ -12,13 +12,13 @@
 
         if(!( empty($name) || empty($email) || empty($password) )) {
             $db->query($query) or die($db->error);
-            header("Location: http://localhost:8888/php_cms/php/login.php");
+            header("Location: $SRC_PATH/pages/login.php");
         }
         else { 
             echo "<h1>Database Error</h1>";
         }
     } else {
-        include("header.php");
+        include(SHARED_PATH . "/header.php");
 ?>
        <h1 class="text-center">Register</h1>
         <div class="row">
@@ -52,5 +52,5 @@
 
 <?php
     }
-    include("footer.php");
+    include(SHARED_PATH . "/footer.php");
 ?>

@@ -1,7 +1,5 @@
 
 <?php
-
-    require_once("init.php");
     if(isset($_SESSION['user_id'])) {
 
         $user_id = $_SESSION['user_id'];
@@ -31,12 +29,12 @@
     }
 
     function createPost($post, $user) {
-
+        global $SRC_PATH;
         if(isset($_SESSION['user_id'])) {
-            $icons = "<a href='http://localhost:8888/php_cms/php/modifyPost.php?deletePost=$post[post_id]'><span class='deletePost'>
+            $icons = "<a href='$SRC_PATH/pages/modifyPost.php?deletePost=$post[post_id]'><span class='deletePost'>
                         <i class='fa fa-times' aria-hidden='true'></i>
                         </span></a>
-                      <a href='http://localhost:8888/php_cms/php/modifyPost.php?editPost=$post[post_id]'><span class='editPost'>
+                      <a href='$SRC_PATH/pages/modifyPost.php?editPost=$post[post_id]'><span class='editPost'>
                         <i class='fa fa-pencil-square-o' aria-hidden='true'></i>
                       </span></a>";
         } else {
@@ -44,7 +42,7 @@
         }
 
         echo "<article>";
-        echo "<h2><a href='php/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h2>";
+        echo "<h2><a href='$SRC_PATH/pages/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h2>";
         echo "<div class='author'>-" . $user['name'] . $icons . "</div>";
         echo "</article>";
     }

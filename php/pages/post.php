@@ -1,6 +1,6 @@
 <?php
-    require("init.php");
-    include("header.php");
+    require_once("../common/init.php");
+    include(SHARED_PATH . "/header.php");
     $post_id = $_GET["id"];
     $query = "SELECT title, date, content FROM posts WHERE post_id='" . $post_id . "';";
     $result = $db->query($query) or die($db->error);
@@ -18,5 +18,5 @@
 </div>
 
 <?php
-    include("footer.php");
+    include(SHARED_PATH . "/footer.php");
 ?>

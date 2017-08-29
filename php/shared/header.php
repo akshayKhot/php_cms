@@ -17,5 +17,5 @@
        
 
 <?php
-    include("nav.php");
+    include(PAGES_PATH . "/nav.php");
 ?>

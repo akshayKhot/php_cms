@@ -1,8 +1,9 @@
 <?
-    require_once("init.php");
+    require_once(COMMON_PATH . "/init.php");
 ?>
 
 <div class="header clearfix">
+    
     <nav>
       <ul class="nav nav-pills pull-right">
           <?php 
@@ -11,12 +12,12 @@
                 $user_query = "SELECT name FROM users WHERE user_id='$user_id';";
                 $user_result = $db->query($user_query) or die($db->error);
                 $user = mysqli_fetch_assoc($user_result);
-                echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/addnew.php'>Add</a></li>";
-                echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/logout.php'>Logout</a></li>";
+                echo "<li role='presentation'><a href='$SRC_PATH/pages/addnew.php'>Add</a></li>";
+                echo "<li role='presentation'><a href='$SRC_PATH/pages/logout.php'>Logout</a></li>";
             } else {
                 $user["name"] = "";
-                echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/register.php'>Register</a></li>";
-                echo "<li role='presentation'><a href='http://localhost:8888/php_cms/php/login.php'>Login</a></li>";
+                echo "<li role='presentation'><a href='$SRC_PATH/pages/register.php'>Register</a></li>";
+                echo "<li role='presentation'><a href='$SRC_PATH/pages/login.php'>Login</a></li>";
             }
             ?>        
       </ul>

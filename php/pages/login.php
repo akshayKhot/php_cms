@@ -1,5 +1,5 @@
 <?php 
-    require("init.php");
+    require_once("../common/init.php");
     if((isset($_POST["submitBtn"]))) {
         $email = htmlspecialchars($_POST["email"]);
         $password = htmlspecialchars($_POST["password"]);
@@ -15,13 +15,13 @@
 
         if(password_verify($password, $crypted)) {
             $_SESSION["user_id"] = $user_id;
-            header("Location: http://localhost:8888/php_cms/");
+            header("Location: $HOME_PATH");
         } else {
             $_SESSION["loginerror"] = 1;
-            header("Location: http://localhost:8888/php_cms/php/login.php");
+            header("Location: $SRC_PATH/pages/login.php");
         }
     } else {
-        include("header.php");
+        include(SHARED_PATH . "/header.php");
 ?>
        <h1 class="text-center">Login</h1>
        <div class="row">
@@ -44,5 +44,5 @@
  
 <?php
     }
-    include("footer.php");
+    include(SHARED_PATH . "/footer.php");
 ?>
