@@ -1,7 +1,5 @@
 <?php
     require("init.php");
-    include("header.php");
-    include("nav.php");
     
     if(isset($_POST["submitBtn"])) {
         
@@ -15,14 +13,13 @@
 
         if(!( empty($title) || empty($date) || empty($content) )) {
             $db->query($query) or die($db->error);
-            echo "<h3>Post added successfully</h3>";
-            echo "<a href='http://localhost:8888/php_cms/'><button class='btn btn-success'>All Posts</button></a>";
+            header("Location: http://localhost:8888/php_cms/");
         }
         else { 
             echo "<h1>Database Error</h1>";
         }
     } else {
-        
+        include("header.php");
 ?>
 
 <h1 class="text-center spaced">Add New Post</h1>

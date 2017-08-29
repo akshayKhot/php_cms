@@ -22,7 +22,6 @@
         }
         elseif(isset($_GET["editPost"])) {
             include("header.php");
-            include("nav.php");
             $postQuery = "SELECT title, date, content FROM posts WHERE post_id='$_GET[editPost])';";
             $result = $db->query($postQuery) or die($db->error);
             $row = mysqli_fetch_assoc($result);

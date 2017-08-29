@@ -22,7 +22,6 @@
         }
     } else {
         include("header.php");
-        include("nav.php");
 ?>
        <h1 class="text-center">Login</h1>
        <div class="row">

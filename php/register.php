@@ -19,7 +19,6 @@
         }
     } else {
         include("header.php");
-        include("nav.php");
 ?>
        <h1 class="text-center">Register</h1>
         <div class="row">
