@@ -1,7 +1,7 @@
 <?php
-
-    include("common.php");
+    require("init.php");
     include("header.php");
+    include("nav.php");
     $post_id = $_GET["id"];
     $query = "SELECT title, date, content FROM posts WHERE post_id='" . $post_id . "';";
     $result = $db->query($query) or die($db->error);

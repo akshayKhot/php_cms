@@ -1,9 +1,9 @@
 <?php
-    include("common.php");
+    require("init.php");
     include("header.php");
+    include("nav.php");
     
     if(isset($_POST["submitBtn"])) {
-        require 'connect.php';
         
         $title = htmlspecialchars($_POST["title"]);
         $date = htmlspecialchars($_POST["date"]);

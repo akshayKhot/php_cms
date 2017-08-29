@@ -1,6 +1,6 @@
 <?php 
-    include "common.php";
-    require "connect.php";
+    require("init.php");
+    
     if(isset($_SESSION["user_id"])) {
         if(isset($_GET["deletePost"])) {
             $deleteQuery = "DELETE FROM posts WHERE post_id=$_GET[deletePost]";
@@ -8,7 +8,12 @@
             header("Location: http://localhost:8888/php_cms/");
         }
         elseif(isset($_POST["submitBtn"])) {
-            $updateQuery = "UPDATE posts SET title='$_POST[title]', date='$_POST[date]', content='$_POST[content]' WHERE post_id=$_GET[editPost];";
+
+            $title = htmlspecialchars(mysqli_real_escape_string($db, $_POST["title"]));
+            $date = htmlspecialchars($_POST["date"]);
+            $content = htmlspecialchars(mysqli_real_escape_string($db, $_POST["content"]));
+
+            $updateQuery = "UPDATE posts SET title='$title', date='$date', content='$content' WHERE post_id=$_GET[editPost];";
             $db->query($updateQuery) or die($db->error);
             header("Location: http://localhost:8888/php_cms/");
         }
@@ -16,7 +21,8 @@
             header("Location: http://localhost:8888/php_cms/");
         }
         elseif(isset($_GET["editPost"])) {
-            include "header.php";
+            include("header.php");
+            include("nav.php");
             $postQuery = "SELECT title, date, content FROM posts WHERE post_id='$_GET[editPost])';";
             $result = $db->query($postQuery) or die($db->error);
             $row = mysqli_fetch_assoc($result);
