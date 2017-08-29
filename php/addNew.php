@@ -33,7 +33,7 @@
             <div class="form-group">
                 <label for="dateInput" class="col-sm-2 control-label">Date</label>
                 <div class="col-sm-10">
-                <input type="date" class="form-control" id="dateInput" placeholder="date" name="date">
+                <input type="date" class="form-control" id="dateInput" placeholder="date" name="date" value="<?php echo date('Y-m-d');?>">
                 </div>
             </div>
             <div class="form-group">
