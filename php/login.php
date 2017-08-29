@@ -1,7 +1,6 @@
 <?php 
-    include "common.php";
+    require("init.php");
     if((isset($_POST["submitBtn"]))) {
-        require 'connect.php';
         $email = htmlspecialchars($_POST["email"]);
         $password = htmlspecialchars($_POST["password"]);
 
@@ -23,6 +22,7 @@
         }
     } else {
         include("header.php");
+        include("nav.php");
 ?>
        <h1 class="text-center">Login</h1>
        <div class="row">

@@ -1,8 +1,8 @@
 
 <?php
-    include("nav.php");
+
+    require_once("init.php");
     if(isset($_SESSION['user_id'])) {
-        require 'connect.php';
 
         $user_id = $_SESSION['user_id'];
         $posts_query = "SELECT * FROM posts WHERE author_id='$user_id' ORDER BY date DESC;";
@@ -11,7 +11,7 @@
         $query = "SELECT name FROM users WHERE user_id='" . $user_id . "';";
         $result = $db->query($query) or die($db->error);
         $user = mysqli_fetch_assoc($result);
-        
+    
         foreach ($posts_result as $post) {
             createPost($post, $user);
         }

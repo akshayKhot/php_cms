@@ -1,8 +1,11 @@
+<?
+    require_once("init.php");
+?>
+
 <div class="header clearfix">
     <nav>
       <ul class="nav nav-pills pull-right">
           <?php 
-            require 'connect.php';
             if(isset($_SESSION['user_id'])) {
                 $user_id = $_SESSION['user_id'];
                 $user_query = "SELECT name FROM users WHERE user_id='$user_id';";
