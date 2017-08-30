@@ -3,6 +3,6 @@
     if(isset($_SESSION["user_id"])) {
         session_destroy();
     }
-    header("Location: $HOME_PATH");
+    redirect_to($HOME_PATH);
 
 ?>

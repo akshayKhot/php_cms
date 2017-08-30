@@ -1,9 +1,9 @@
 <?php 
     require_once("../common/init.php");
     if(isset($_POST["submitBtn"])) {
-        $name = htmlspecialchars($_POST["name"]);
-        $email = htmlspecialchars($_POST["email"]);
-        $password = htmlspecialchars($_POST["password"]);
+        $name = sanitize($_POST["name"]);
+        $email = sanitize($_POST["email"]);
+        $password = sanitize($_POST["password"]);
         $crypted = password_hash($password, PASSWORD_DEFAULT);
         $matches = password_verify("temp", $crypted);
 
@@ -12,7 +12,7 @@
 
         if(!( empty($name) || empty($email) || empty($password) )) {
             $db->query($query) or die($db->error);
-            header("Location: $SRC_PATH/pages/login.php");
+            redirect_to("$SRC_PATH/pages/login.php");
         }
         else { 
             echo "<h1>Database Error</h1>";

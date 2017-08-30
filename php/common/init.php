@@ -11,4 +11,5 @@
     $SRC_PATH = $HOST_PATH . "/php_cms/php";
 
     require_once("database.php");
+    require_once("functions.php");
 ?>

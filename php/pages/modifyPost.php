@@ -5,20 +5,20 @@
         if(isset($_GET["deletePost"])) {
             $deleteQuery = "DELETE FROM posts WHERE post_id=$_GET[deletePost]";
             $db->query($deleteQuery) or die($db->error);
-            header("Location: $HOME_PATH");
+            redirect_to($HOME_PATH);
         }
         elseif(isset($_POST["submitBtn"])) {
 
-            $title = htmlspecialchars(mysqli_real_escape_string($db, $_POST["title"]));
-            $date = htmlspecialchars($_POST["date"]);
-            $content = htmlspecialchars(mysqli_real_escape_string($db, $_POST["content"]));
+            $title = sanitize($_POST["title"]);
+            $date = sanitize($_POST["date"]);
+            $content = sanitize($_POST["content"]);
 
             $updateQuery = "UPDATE posts SET title='$title', date='$date', content='$content' WHERE post_id=$_GET[editPost];";
             $db->query($updateQuery) or die($db->error);
-            header("Location: $HOME_PATH");
+            redirect_to($HOME_PATH);
         }
         elseif(isset($_POST["cancelBtn"])) {
-            header("Location: $HOME_PATH");
+            redirect_to($HOME_PATH);
         }
         elseif(isset($_GET["editPost"])) {
             include(SHARED_PATH . "/header.php");

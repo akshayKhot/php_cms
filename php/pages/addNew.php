@@ -3,9 +3,9 @@
     
     if(isset($_POST["submitBtn"])) {
         
-        $title = htmlspecialchars(mysqli_real_escape_string($db, $_POST["title"]));
-        $date = htmlspecialchars($_POST["date"]);
-        $content = htmlspecialchars(mysqli_real_escape_string($db, $_POST["content"]));
+        $title = sanitize($_POST["title"]);
+        $date = sanitize($_POST["date"]);
+        $content = sanitize($_POST["content"]);
         $user_id = $_SESSION['user_id'];
 
         $query = "INSERT INTO posts (title, date, author_ID, content)
@@ -13,7 +13,7 @@
 
         if(!( empty($title) || empty($date) || empty($content) )) {
             $db->query($query) or die($db->error);
-            header("Location: $HOME_PATH");
+            redirect_to($HOME_PATH);
         }
         else { 
             echo "<h1>Database Error</h1>";

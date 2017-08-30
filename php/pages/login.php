@@ -1,8 +1,8 @@
 <?php 
     require_once("../common/init.php");
     if((isset($_POST["submitBtn"]))) {
-        $email = htmlspecialchars($_POST["email"]);
-        $password = htmlspecialchars($_POST["password"]);
+        $email = sanitize($_POST["email"]);
+        $password = sanitize($_POST["password"]);
 
         $query = "SELECT user_id, name, password FROM users WHERE email='$email';";
         
@@ -15,10 +15,10 @@
 
         if(password_verify($password, $crypted)) {
             $_SESSION["user_id"] = $user_id;
-            header("Location: $HOME_PATH");
+            redirect_to($HOME_PATH);
         } else {
             $_SESSION["loginerror"] = 1;
-            header("Location: $SRC_PATH/pages/login.php");
+            redirect_to("$SRC_PATH/pages/login.php");
         }
     } else {
         include(SHARED_PATH . "/header.php");
