@@ -4,7 +4,7 @@
     if(isset($_SESSION["user_id"])) {
         if(isset($_GET["deletePost"])) {
             $deleteQuery = "DELETE FROM posts WHERE post_id=$_GET[deletePost]";
-            $db->query($deleteQuery) or die($db->error);
+            executeQuery($deleteQuery);
             redirect_to($HOME_PATH);
         }
         elseif(isset($_POST["submitBtn"])) {
@@ -14,7 +14,7 @@
             $content = sanitize($_POST["content"]);
 
             $updateQuery = "UPDATE posts SET title='$title', date='$date', content='$content' WHERE post_id=$_GET[editPost];";
-            $db->query($updateQuery) or die($db->error);
+            executeQuery($updateQuery);
             redirect_to($HOME_PATH);
         }
         elseif(isset($_POST["cancelBtn"])) {
@@ -23,7 +23,7 @@
         elseif(isset($_GET["editPost"])) {
             include(SHARED_PATH . "/header.php");
             $postQuery = "SELECT title, date, content FROM posts WHERE post_id='$_GET[editPost])';";
-            $result = $db->query($postQuery) or die($db->error);
+            $result = executeQuery($postQuery);
             $row = mysqli_fetch_assoc($result);
             $phpdate = strtotime( $row['date'] );   
 ?>

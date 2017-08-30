@@ -4,10 +4,10 @@
 
         $user_id = $_SESSION['user_id'];
         $posts_query = "SELECT * FROM posts WHERE author_id='$user_id' ORDER BY date DESC;";
-        $posts_result = $db->query($posts_query) or die($db->error);
+        $posts_result = executeQuery($posts_query);
         
         $query = "SELECT name FROM users WHERE user_id='" . $user_id . "';";
-        $result = $db->query($query) or die($db->error);
+        $result = executeQuery($query);
         $user = mysqli_fetch_assoc($result);
     
         foreach ($posts_result as $post) {
@@ -15,12 +15,12 @@
         }
     } else {
         $posts_query = "SELECT * FROM posts ORDER BY date DESC;";
-        $posts_result = $db->query($posts_query) or die($db->error);
+        $posts_result = executeQuery($posts_query);
 
         foreach ($posts_result as $post) {
 
             $query = "SELECT name FROM users WHERE user_id='" . $post["author_id"] . "';";
-            $result = $db->query($query) or die($db->error);
+            $result = executeQuery($query);
             $user = mysqli_fetch_assoc($result);
 
             createPost($post, $user);

@@ -3,7 +3,7 @@
     include(SHARED_PATH . "/header.php");
     $post_id = $_GET["id"];
     $query = "SELECT title, date, content FROM posts WHERE post_id='" . $post_id . "';";
-    $result = $db->query($query) or die($db->error);
+    $result = executeQuery($query);
     $post = mysqli_fetch_assoc($result);
 ?>
 

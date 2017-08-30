@@ -10,7 +10,7 @@
             if(isset($_SESSION['user_id'])) {
                 $user_id = $_SESSION['user_id'];
                 $user_query = "SELECT name FROM users WHERE user_id='$user_id';";
-                $user_result = $db->query($user_query) or die($db->error);
+                $user_result = executeQuery($user_query);
                 $user = mysqli_fetch_assoc($user_result);
                 echo "<li role='presentation'><a href='$SRC_PATH/pages/addnew.php'>Add</a></li>";
                 echo "<li role='presentation'><a href='$SRC_PATH/pages/logout.php'>Logout</a></li>";

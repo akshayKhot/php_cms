@@ -11,7 +11,7 @@
                     VALUES ('$name', '$email', '$crypted');";
 
         if(!( empty($name) || empty($email) || empty($password) )) {
-            $db->query($query) or die($db->error);
+            executeQuery($query);
             redirect_to("$SRC_PATH/pages/login.php");
         }
         else { 

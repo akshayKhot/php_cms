@@ -10,14 +10,9 @@
 
         $query = "INSERT INTO posts (title, date, author_ID, content)
                     VALUES ('$title', '$date', '$user_id', '$content');";
-
-        if(!( empty($title) || empty($date) || empty($content) )) {
-            $db->query($query) or die($db->error);
-            redirect_to($HOME_PATH);
-        }
-        else { 
-            echo "<h1>Database Error</h1>";
-        }
+        executeQuery($query);      
+        redirect_to($HOME_PATH);
+        
     } else {
         include(SHARED_PATH . "/header.php");
 ?>

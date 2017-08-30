@@ -6,7 +6,7 @@
 
         $query = "SELECT user_id, name, password FROM users WHERE email='$email';";
         
-        $result = $db->query($query) or die($db->error);
+        $result = executeQuery($query);
         $row = mysqli_fetch_assoc($result);
         
         $crypted = $row["password"]; 
