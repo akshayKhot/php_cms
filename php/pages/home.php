@@ -42,7 +42,7 @@
         }
 
         echo "<article>";
-        echo "<h2><a href='$SRC_PATH/pages/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h2>";
+        echo "<h3><a href='$SRC_PATH/pages/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h3>";
         echo "<div class='author'>-" . $user['name'] . $icons . "</div>";
         echo "</article>";
     }

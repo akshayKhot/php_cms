@@ -51,9 +51,8 @@ article {
     margin: 10px;
 }
 
-article .title {
-    text-align: center;
-    font-size: 2em;
+article h3 a{
+    color: #000;
 }
 
 article .author {
