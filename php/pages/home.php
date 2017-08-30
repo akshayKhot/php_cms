@@ -1,34 +1,24 @@
 
 <?php
     if(isset($_SESSION['user_id'])) {
-
         $user_id = $_SESSION['user_id'];
-        $posts_query = "SELECT * FROM posts WHERE author_id='$user_id' ORDER BY date DESC;";
-        $posts_result = executeQuery($posts_query);
         
-        $query = "SELECT name FROM users WHERE user_id='" . $user_id . "';";
-        $result = executeQuery($query);
-        $user = mysqli_fetch_assoc($result);
-    
+        $posts_result = getAllPostsForAuthor($user_id);
+        $authorName = getUserFromId($user_id)["name"];
+        
         foreach ($posts_result as $post) {
-            createPost($post, $user);
+            createPost($post, $authorName);
         }
     } else {
-        $posts_query = "SELECT * FROM posts ORDER BY date DESC;";
-        $posts_result = executeQuery($posts_query);
-
+        $posts_result = getAllPosts();
+        
         foreach ($posts_result as $post) {
-
-            $query = "SELECT name FROM users WHERE user_id='" . $post["author_id"] . "';";
-            $result = executeQuery($query);
-            $user = mysqli_fetch_assoc($result);
-
-            createPost($post, $user);
+            $authorName = getUserFromId($post["author_id"])["name"];
+            createPost($post, $authorName);
         }
-
     }
 
-    function createPost($post, $user) {
+    function createPost($post, $authorName) {
         global $SRC_PATH;
         if(isset($_SESSION['user_id'])) {
             $icons = "<a href='$SRC_PATH/pages/modifyPost.php?deletePost=$post[post_id]'><span class='deletePost'>
@@ -42,8 +32,8 @@
         }
 
         echo "<article>";
-        echo "<h3><a href='$SRC_PATH/pages/post.php?id=".$post["post_id"]."&author=".$user["name"]."'>" . $post['title'] . "</a></h3>";
-        echo "<div class='author'>-" . $user['name'] . $icons . "</div>";
+        echo "<h3><a href='$SRC_PATH/pages/post.php?id=".$post["post_id"]."&author=$authorName'>" . $post['title'] . "</a></h3>";
+        echo "<div class='author'>-$authorName" . $icons . "</div>";
         echo "</article>";
     }
 ?>

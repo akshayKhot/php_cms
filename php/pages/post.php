@@ -1,10 +1,7 @@
 <?php
     require_once("../common/init.php");
     include(SHARED_PATH . "/header.php");
-    $post_id = $_GET["id"];
-    $query = "SELECT title, date, content FROM posts WHERE post_id='" . $post_id . "';";
-    $result = executeQuery($query);
-    $post = mysqli_fetch_assoc($result);
+    $post = getPostFromId($_GET["id"]);
 ?>
 
 <div class="container single-post">

@@ -7,16 +7,9 @@
         $crypted = password_hash($password, PASSWORD_DEFAULT);
         $matches = password_verify("temp", $crypted);
 
-        $query = "INSERT INTO users (name, email, password)
-                    VALUES ('$name', '$email', '$crypted');";
-
-        if(!( empty($name) || empty($email) || empty($password) )) {
-            executeQuery($query);
-            redirect_to("$SRC_PATH/pages/login.php");
-        }
-        else { 
-            echo "<h1>Database Error</h1>";
-        }
+        addUser($name, $email, $crypted);
+        redirect_to("$SRC_PATH/pages/login.php");
+        
     } else {
         include(SHARED_PATH . "/header.php");
 ?>

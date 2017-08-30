@@ -3,17 +3,12 @@
     if((isset($_POST["submitBtn"]))) {
         $email = sanitize($_POST["email"]);
         $password = sanitize($_POST["password"]);
-
-        $query = "SELECT user_id, name, password FROM users WHERE email='$email';";
         
-        $result = executeQuery($query);
-        $row = mysqli_fetch_assoc($result);
-        
-        $crypted = $row["password"]; 
-        $name = $row["name"]; 
-        $user_id = $row["user_id"];
+        $user = getUserFromEmail($email);
+        $cryptedPassword = $user["password"]; 
+        $user_id = $user["user_id"];
 
-        if(password_verify($password, $crypted)) {
+        if(password_verify($password, $cryptedPassword)) {
             $_SESSION["user_id"] = $user_id;
             redirect_to($HOME_PATH);
         } else {

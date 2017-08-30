@@ -8,9 +8,7 @@
         $content = sanitize($_POST["content"]);
         $user_id = $_SESSION['user_id'];
 
-        $query = "INSERT INTO posts (title, date, author_ID, content)
-                    VALUES ('$title', '$date', '$user_id', '$content');";
-        executeQuery($query);      
+        addNewPost($title, $date, $user_id, $content);
         redirect_to($HOME_PATH);
         
     } else {
