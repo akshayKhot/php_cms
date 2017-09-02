@@ -28,7 +28,7 @@
         if(is_blank($post['title'])) {
             $errors[] = "Title cannot be blank";
         } elseif(!has_length_greater_than($post['title'], 3)) {
-            $errors[] = "Name must be greater than 3 characters";
+            $errors[] = "Title must be greater than 3 characters";
         }
 
         if(is_blank($post['content'])) {
@@ -37,6 +37,48 @@
             $errors[] = "Content must be greater than 10 characters";
         }
 
+        return $errors;
+    }
+
+    function addUser($user) {
+        $errors = validate_user($user);
+        if(!empty($errors)) {
+            return $errors;
+        }
+
+        $crypted = password_hash($user["password"], PASSWORD_DEFAULT);
+        $query = "INSERT INTO users (name, email, password)
+                    VALUES ('$user[name]', '$user[email]', '$crypted');";
+        return executeQuery($query);
+    }
+
+    function validate_user($user) {
+        $errors = [];
+       
+        if(is_blank($user['name'])) {
+            $errors[] = "Name cannot be blank";
+        } elseif(!has_length_greater_than($user['name'], 3)) {
+            $errors[] = "Name must be greater than 3 characters";
+        }
+
+        if(!is_valid_email($user['email'])) {
+            $errors[] = "Invalid email";
+        } else {
+            $query = "SELECT * FROM users WHERE email='$user[email]';";
+            $result = executeQuery($query);
+            if(mysqli_num_rows($result) > 0) {
+                $errors[] = "User with the given email already exists.";
+            }
+        }
+
+        if(is_blank($user['password'])) {
+            $errors[] = "Password cannot be blank";
+        } elseif(!has_length_greater_than($user['password'], 6)) {
+            $errors[] = "Password must be greater than 6 characters";
+        } elseif($user['password'] !== $user['confirmPassword']) {
+            $errors[] = "Password don't match";
+        }
+        
         return $errors;
     }
 
@@ -80,10 +122,6 @@
 
     
 
-    function addUser($name, $email, $password) {
-        $query = "INSERT INTO users (name, email, password)
-                    VALUES ('$name', '$email', '$password');";
-        executeQuery($query);
-    }
+    
 
 ?>
