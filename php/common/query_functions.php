@@ -11,6 +11,17 @@
         return executeQuery($query); 
     }
 
+    function updatePost($post) {
+        $errors = validate_post($post);
+        if(!empty($errors)) {
+            return $errors;
+        }
+        $updateQuery = "UPDATE posts
+                        SET title='$post[title]', date='$post[date]', content='$post[content]' 
+                        WHERE post_id='$post[post_id]';";
+        return executeQuery($updateQuery);
+    }
+
     function validate_post($post) {
         $errors = [];
 
@@ -22,7 +33,7 @@
 
         if(is_blank($post['content'])) {
             $errors[] = "Content cannot be blank";
-        } elseif(!has_length_greater_than($post['title'], 10)) {
+        } elseif(!has_length_greater_than($post['content'], 10)) {
             $errors[] = "Content must be greater than 10 characters";
         }
 
@@ -67,10 +78,7 @@
         executeQuery($deleteQuery);
     }
 
-    function updatePost($title="", $date="", $content="", $id="") {
-        $updateQuery = "UPDATE posts SET title='$title', date='$date', content='$content' WHERE post_id=$id;";
-        executeQuery($updateQuery);
-    }
+    
 
     function addUser($name, $email, $password) {
         $query = "INSERT INTO users (name, email, password)
