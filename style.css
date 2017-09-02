@@ -86,3 +86,10 @@ article .content {
     margin-left: 10px;
     color: #444;
 }
+
+div.error {
+    border: 1px solid red;
+    color: red;
+    padding: 5px;
+    margin-bottom: 20px;
+}

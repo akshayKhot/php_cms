@@ -1,9 +1,32 @@
 <?php 
 
-    function addNewPost($title="", $date="", $user_id="", $content="") {
+    function addNewPost($post) {
+        $errors = validate_post($post); 
+        if(!empty($errors)) {
+            return $errors;
+        }
+
         $query = "INSERT INTO posts (title, date, author_ID, content)
-                    VALUES ('$title', '$date', '$user_id', '$content');";
-        executeQuery($query); 
+                    VALUES ('$post[title]', '$post[date]', '$post[user_id]', '$post[content]');";
+        return executeQuery($query); 
+    }
+
+    function validate_post($post) {
+        $errors = [];
+
+        if(is_blank($post['title'])) {
+            $errors[] = "Title cannot be blank";
+        } elseif(!has_length_greater_than($post['title'], 3)) {
+            $errors[] = "Name must be greater than 3 characters";
+        }
+
+        if(is_blank($post['content'])) {
+            $errors[] = "Content cannot be blank";
+        } elseif(!has_length_greater_than($post['title'], 10)) {
+            $errors[] = "Content must be greater than 10 characters";
+        }
+
+        return $errors;
     }
 
     function getPostFromId($id="") {
