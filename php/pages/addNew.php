@@ -18,36 +18,34 @@
     }
     include(SHARED_PATH . "/header.php");
 ?>
-
-<h1 class="text-center spaced">Add New Post</h1>
     
-    <?php echo display_errors($errors); ?>
-        <form class="form-horizontal" action="" method="post">
-            <div class="form-group">
-                <label for="titleInput" class="col-sm-2 control-label">Title</label>
-                <div class="col-sm-10">
-                <input type="text" class="form-control" id="titleInput" placeholder="add title" value="<?php echo sanitize($post['title'] ?? '')?>" name="title">
-                </div>
+<?php echo display_errors($errors); ?>
+    <form class="form-horizontal addNewForm" action="" method="post">
+        <div class="form-group">
+            <label for="titleInput" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="titleInput" placeholder="add title" value="<?php echo sanitize($post['title'] ?? '')?>" name="title">
             </div>
-            <div class="form-group">
-                <label for="dateInput" class="col-sm-2 control-label">Date</label>
-                <div class="col-sm-10">
-                <input type="date" class="form-control" id="dateInput" placeholder="date" name="date" value="<?php echo date('Y-m-d');?>">
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="dateInput" class="col-sm-2 control-label">Date</label>
+            <div class="col-sm-10">
+            <input type="date" class="form-control" id="dateInput" placeholder="date" name="date" value="<?php echo date('Y-m-d');?>">
             </div>
-            <div class="form-group">
-                <label for="contentInput" class="col-sm-2 control-label">Content</label>
-                <div class="col-sm-10">
-                <textarea type="text" class="form-control" id="contentInput" placeholder="write your post here" rows="10" name="content"><?php echo sanitize($post['content'] ?? '')?></textarea>
-                </div>
+        </div>
+        <div class="form-group">
+            <label for="contentInput" class="col-sm-2 control-label">Content</label>
+            <div class="col-sm-10">
+            <textarea type="text" class="form-control" id="contentInput" placeholder="write your post here" rows="10" name="content"><?php echo sanitize($post['content'] ?? '')?></textarea>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10 text-center">
-                <button type="submit" name="submitBtn" class="btn btn-success">Add Post</button>
-                </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 text-center">
+            <button type="submit" name="submitBtn" class="btn btn-success">Add Post</button>
             </div>
-        </form>
-   
+        </div>
+    </form>
+
 <?php
     include(SHARED_PATH . "/footer.php");
 ?>
