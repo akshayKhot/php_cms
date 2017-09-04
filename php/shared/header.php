@@ -2,7 +2,7 @@
 <html>
 <head>
    <meta charset='UTF-8'>
-   <title>Codes</title>
+   <title>Blog</title>
    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
    <link rel='stylesheet' href='http://localhost:8888/php_cms/style.css'>
    <script

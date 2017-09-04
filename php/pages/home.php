@@ -33,7 +33,7 @@
 
         echo "<article>";
         echo "<h3><a href='$SRC_PATH/pages/post.php?id=".$post["post_id"]."&author=$authorName'>" . $post['title'] . "</a></h3>";
-        echo "<div class='author'>-$authorName" . $icons . "</div>";
+        echo "<div class='author'>-<a href='" . $SRC_PATH . "/pages/user.php?user_id=" . $post['author_id'] . "'>$authorName</a>" . $icons . "</div>";
         echo "</article>";
     }
 ?>
