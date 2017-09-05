@@ -9,7 +9,7 @@
 
     echo "<h3>$user[name]</h3>";
     echo "<p>$user[email]</p>";
-    echo "<p> Number of posts written: " . mysqli_num_rows($posts) . "</p>"
+    echo "<p> Posts Written: " . mysqli_num_rows($posts) . "</p>"
     
 ?>
     
