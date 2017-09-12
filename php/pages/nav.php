@@ -9,6 +9,7 @@
           <?php 
             if(isset($_SESSION['user_id'])) {
                 $user = getUserFromId($_SESSION['user_id']);
+                echo "<li role='presentation'><a href='$SRC_PATH/pages/myAccount.php'>My Account</a></li>";
                 echo "<li role='presentation'><a href='$SRC_PATH/pages/addnew.php'>Add</a></li>";
                 echo "<li role='presentation'><a href='$SRC_PATH/pages/logout.php'>Logout</a></li>";
             } else {
